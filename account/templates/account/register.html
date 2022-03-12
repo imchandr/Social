@@ -1,0 +1,59 @@
+{% extends 'account/home.html' %}
+
+{% block contents %}
+
+<!-- component -->
+<div class="h-screen   flex justify-center items-center w-full ">
+    <form method='POST'>
+        {% csrf_token %}
+      <div class="bg-gray-50 px-10 py-8 rounded-xl shadow-xl w-screen shadow-md max-w-xl">
+        <div class="space-y-8">
+            
+          <h1 class="text-center text-2xl font-semibold text-gray-600">Register</h1>
+
+          <div class="relative">
+
+            {% if form.errors %}
+            {% if form.non_field_errors %}
+            <div class="bg-red-100 rounded-lg py-5 px-6 mb-3 text-base text-red-700 inline-flex items-center w-3/5" role="alert">
+                
+                {{form.non_field_errors|striptags}}
+              </div>
+            {% endif %}
+            {% for field in form %}
+            {% if field.errors %}
+            <div class="bg-red-100 rounded-lg py-5 px-6 mb-3 text-base text-red-700 inline-flex items-center w-3/5" role="alert">
+                
+                {{field.errors|striptags}}
+              </div>
+            {% endif %}{% endfor %}{% endif %}
+            </div>
+            
+            {{form.first_name}}
+          </div>
+          <div>
+            
+            {{form.last_name}}
+          </div>
+          <div>
+            
+            {{form.email}}
+          </div>
+          <div>
+            
+            {{form.phone}}
+          </div>
+          <div>
+            
+            {{form.password}}
+          </div>
+          <div>
+            
+            {{form.confirm_password}}
+            <button type=submit class="mt-8 w-full bg-gradient-to-tr from-blue-600 to-indigo-600 text-indigo-100 py-2 rounded-md text-lg tracking-wide">Register</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  {% endblock contents %}

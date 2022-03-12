@@ -1,0 +1,43 @@
+{% extends 'account/home.html' %}
+
+{% block contents %}
+
+
+<!-- search component -->
+<div class="fixed top-0 left-0 w-full h-full bg-gray-200 z-40 select-none">
+    <div class="w-4/6 z-50 relative mx-auto mt-36">
+      
+      <div class="bg-white w-full rounded-xl shadow-xl overflow-hidden p-1">
+        <!-- items -->
+        {% if users %}
+        {% for user in users %}
+        <div class="my-2 w-full flex p-3 pl-4 items-center hover:bg-gray-300 rounded-lg cursor-pointer">
+            <div class="mr-4"><div class="h-9 w-9 rounded-sm flex items-center justify-center text-3xl mr-12" >
+              <img src="{{user.profile.avatar.url}}" alt="user-profile-img" class="rounded-full w-12 h-12  ">
+            </div>
+          </div>
+          <div>
+            <div class="font-bold text-lg"> <a href="{% url 'users:profile_view' user.phone %}">{{user.first_name}} {{user.last_name}}</a> </div>
+            <div class="text-xs text-gray-500">
+              <span class="mr-2">Phone: {{user.phone}}</span>
+              <span class="mr-2">email: {{user.email}}</span>
+              
+            </div>
+          </div>
+        </div>
+        
+        {% endfor %}
+        {% else %}
+        <div class="my-2 w-full flex p-3 pl-4 items-center hover:bg-gray-300 rounded-lg">
+          No Result found!
+        </div>
+        {% endif %}
+        
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+{% endblock contents %}
