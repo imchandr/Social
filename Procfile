@@ -1,2 +1,2 @@
 release: python manage.py migrate
-web: gunicorn social.wsgi:application
+web: gunicorn core.wsgi:application

@@ -66,15 +66,6 @@ def send_friend_request(request, id):
 	return HttpResponseRedirect('/users/')
 
 @login_required
-def cancel_friend_request(request, id):
-	user = get_object_or_404(User, id=id)
-	frequest = FriendRequest.objects.filter(
-			from_user=request.user,
-			to_user=user).first()
-	frequest.delete()
-	return HttpResponseRedirect('/users/{}'.format(user.profile.slug))
-
-@login_required
 def accept_friend_request(request, id):
 	from_user = get_object_or_404(User, id=id)
 	print('\n\n ', from_user)
@@ -89,19 +80,7 @@ def accept_friend_request(request, id):
 	frequest.delete()
 	return HttpResponseRedirect('/users/{}'.format(request.user.profile.slug))
 
-@login_required
-def delete_friend_request(request, id):
-	from_user = get_object_or_404(User, id=id)
-	frequest = FriendRequest.objects.filter(from_user=from_user, to_user=request.user).first()
-	frequest.delete()
-	return HttpResponseRedirect('/users/{}'.format(request.user.profile.slug))
 
-def delete_friend(request, id):
-	user_profile = request.user.profile
-	friend_profile = get_object_or_404(Profile, id=id)
-	user_profile.friends.remove(friend_profile)
-	friend_profile.friends.remove(user_profile)
-	return HttpResponseRedirect('/users/{}'.format(friend_profile.slug))
 
 @login_required
 def profile_view(request, phone):
@@ -140,25 +119,6 @@ def profile_view(request, phone):
 	return render(request, "users/profile.html", context)
 
 
-
-@login_required
-def edit_profile(request):
-	if request.method == 'POST':
-		u_form = UserUpdateForm(request.POST, instance=request.user)
-		p_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
-		if u_form.is_valid() and p_form.is_valid():
-			u_form.save()
-			p_form.save()
-			messages.success(request, f'Your account has been updated!')
-			return redirect('my_profile')
-	else:
-		u_form = UserUpdateForm(instance=request.user)
-		p_form = ProfileUpdateForm(instance=request.user.profile)
-	context ={
-		'u_form': u_form,
-		'p_form': p_form,
-	}
-	return render(request, 'users/edit_profile.html', context)
 
 @login_required
 def my_profile(request):

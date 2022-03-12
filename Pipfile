@@ -6,6 +6,8 @@ name = "pypi"
 [packages]
 django-autoslug = "*"
 django-on-heroku = "*"
+pillow = "*"
+gunicorn = "*"
 
 [dev-packages]
 
