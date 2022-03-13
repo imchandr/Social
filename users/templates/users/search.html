@@ -13,7 +13,7 @@
         {% for user in users %}
         <div class="my-2 w-full flex p-3 pl-4 items-center hover:bg-gray-300 rounded-lg cursor-pointer">
             <div class="mr-4"><div class="h-9 w-9 rounded-sm flex items-center justify-center text-3xl mr-12" >
-              <img src="{{user.profile.avatar.url}}" alt="user-profile-img" class="rounded-full w-12 h-12  ">
+              <img src="{{user.profile.avatar.url}}" alt="" class="rounded-full w-12 h-12  ">
             </div>
           </div>
           <div>
@@ -27,7 +27,7 @@
               </a>
               {% else %}
               <a href="">
-                <span class="mpx-4 py-2 bg-red-500 border text-white hover:bg-red-600 rounded-md">un friend</span>
+                <span class="px-4 py-2 bg-red-500 border text-white hover:bg-red-600 rounded-md">un friend</span>
               </a>
               {% endif %}
             </div>
