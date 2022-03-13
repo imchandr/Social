@@ -11,6 +11,6 @@ urlpatterns = [
     path('friend-request/send/<int:id>/', user_views.send_friend_request, name='send_friend_request'),
     path('friend-request/accept/<int:id>/', user_views.accept_friend_request, name='accept_friend_request'),
     path('search_users/', user_views.search_users, name='search_users'),
-    path('search/', user_views.search, name='search'),
+    path('search/', user_views.search_api, name='search'),
 	path('<int:phone>/', user_views.profile_view, name='profile_view'),
 ]

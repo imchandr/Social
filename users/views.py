@@ -42,7 +42,7 @@ def users_list(request):
     for se in sent_friend_requests:
         sent_to.append(se.to_user)
     context = {
-        'users': friends,
+        'users': users,
         'sent': sent_to
     }
     return render(request, "users/users_list.html", context)
@@ -170,7 +170,7 @@ def search_users(request):
 		
 	return render(request, "users/search.html", {'users': users_list})
     
-def search(request):
+def search_api(request):
     query = request.GET.get('q')
     payload = []
     
