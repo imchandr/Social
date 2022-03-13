@@ -10,7 +10,7 @@ class Post(models.Model):
     )
     
     title = models.CharField(max_length=255)
-    img = models.ImageField(upload_to='post/imges/', default='blog/images/blog-img.jpg/')
+    img = models.ImageField(upload_to='post/imges/', default='post/imges/blog-img.png')
     description = models.CharField(max_length=255, blank=True)
     display_post = models.CharField(max_length=10, choices=DISPLAY_POST_CHOICES, default='everyone')
     date_posted = models.DateTimeField(default=timezone.now)

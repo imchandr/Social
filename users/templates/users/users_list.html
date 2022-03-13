@@ -105,12 +105,12 @@ $(".closealertbutton").click(function (e) {
                     {% if not user_p.user in sent %}
                     <td class="px-4 py-4 text-md text-bold ">
                         <a class="text-dark" href="{% url 'users:send_friend_request' user_p.user.id %}">
-                            <span class='px-4 py-2 bg-blue-500 rounded-md text-white hover:bg-blue-600'>Add friends</span></a>
+                            <span class='px-6 py-2 bg-blue-500 rounded-md text-white hover:bg-blue-600'>Add friends</span></a>
                         <a href="{{ user_p.get_absolute_url }}"></a>
                     </td>
                     {% else %}
                     <td class="px-4 py-4 text-md text-bold ">
-                        <a href="#"><span class='px-4 py-2 bg-red-500 rounded-md text-white hover:bg-red-600 hover:cursor'>Un-friends</span></a>
+                        <a href="#"><span class='px-4 py-2 bg-red-500 rounded-md text-white hover:bg-red-600 hover:cursor'>Request Send</span></a>
                     </td>
                     {% endif %}
                     {% endfor %}

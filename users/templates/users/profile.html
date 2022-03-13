@@ -21,7 +21,7 @@
         </h1>
         <p class="text-sm text-gray-600 text-center">
             {% if request.user != u %}
-            {{mfrnd_count}} connections in common
+            {{mfrnd_count}} friends in common
             {% endif %}
             {{p.bio}}
         </p>
@@ -54,8 +54,8 @@
                     {% else %}
 
                     <tr class="hover:bg-gray-100 border-b border-gray-200 py-10">
-                        <td class="px-4 py-4"> <a class="text-dark">
-                                You dont have any friends, find one <a href="#"
+                        <td class="px-4 py-4"> <a class="ml-3 text-dark">
+                                You dont have any friends, find one <a href="{% url 'users:users_list' %}"
                                     class='text-blue-500 hover:text-blue-700'> here!</a>
                         </td>
 
@@ -95,8 +95,8 @@
                     {% else %}
 
                     <tr class="hover:bg-gray-100 border-b border-gray-200 py-10">
-                        <td class="px-4 py-4"> <a class="text-dark">
-                                You dont have any friends, find one <a href="#"
+                        <td class="px-4 py-4"> <a class="ml-3 text-dark">
+                                You dont have any mutule friends, make new friends <a href="{% url 'users:users_list' %}"
                                     class='text-blue-500 hover:text-blue-700'> here!</a>
                         </td>
 
@@ -118,7 +118,7 @@
         <p class="ml-3 text-bold text-2xl">Friend Request's Received!</p>
         <div class="flex justify-between w-full pt-6 ">
             {% if not rec_friend_requests %}
-            <p>No Friend request received!</p>
+            <p class='ml-3'>No Friend request received!</p>
 
 
 
