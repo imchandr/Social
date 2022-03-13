@@ -20,22 +20,19 @@
             {{u.first_name}} <span class='px-0.5'></span>{{u.last_name}}
         </h1>
         <p class="text-sm text-gray-600 text-center">
-            13 connections in common
+            {% if request.user != u %}
+            {{mfrnd_count}} connections in common
+            {% endif %}
             {{p.bio}}
         </p>
     </div>
 
 
     <!-- friend list component -->
+    {% if request.user == u %}
     <div class="bg-gray-50 my-12 pb-4 px-4 rounded-md w-full">
         <p class="ml-3 text-bold text-2xl">Friend list</p>
-        <div class="flex justify-between w-full pt-6 ">
-
-
-        </div>
-        <div class="w-full flex justify-end px-2 mt-2">
-           
-        </div>
+        
         <div class="overflow-x-auto mt-6">
             {% if friends %}
             <table class="table-auto border-collapse w-full">
@@ -71,8 +68,52 @@
         </div>
 
     </div>
+    {% endif %}
+    <!--mutual friends component-->
+    {% if request.user != u %}
+    <div class="bg-gray-50 my-12 pb-4 px-4 rounded-md w-full">
+        <p class="ml-3 text-bold text-2xl">Mutule Friends</p>
+        
+        <div class="overflow-x-auto mt-6">
+            {% if friends %}
+            {% for user_p in friends %}
+            <table class="table-auto border-collapse w-full">
+                <tbody class="text-sm font-normal text-gray-700">
+                    <tr class="  hover:bg-gray-100 border-b border-gray-200 shadow-md rounded-md py-10">
+                        <td class="px-4 py-4 text-md text-bold ">
+                            <a href="{{ user_p.get_absolute_url }}"><img src="{{ user_p.avatar.url }}" class="rounded-full w-16 h-16"/></a>
+                            
+                        </td>
+                        <td class="px-4 py-4 text-md text-bold ">
+                            
+                            <a class=" text-gray-700 text-bold text-xl py-4 px-48 hover:text-blue-600" href="{{ user_p.get_absolute_url }}">{{ user_p.user.first_name }} <span class='pl-1'>{{ user_p.user.last_name }}</span></a>
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+                    {% else %}
+
+                    <tr class="hover:bg-gray-100 border-b border-gray-200 py-10">
+                        <td class="px-4 py-4"> <a class="text-dark">
+                                You dont have any friends, find one <a href="#"
+                                    class='text-blue-500 hover:text-blue-700'> here!</a>
+                        </td>
+
+                    </tr>
+
+
+                </tbody>
+                {% endif %}
+            </table>
+        </div>
+
+    </div>
+    {% endif %}
 
     <!-- friend Request component -->
+    
+    {% if u == request.user %}
     <div class="bg-gray-50 my-12 pb-4 px-4 rounded-md w-full">
         <p class="ml-3 text-bold text-2xl">Friend Request's Received!</p>
         <div class="flex justify-between w-full pt-6 ">
@@ -105,7 +146,7 @@
                             </a></td>
 
                     </tr>
-                    {% endfor %} {% endif %}
+                    {% endfor %} {% endif %} {% endif %}
 
 
 
